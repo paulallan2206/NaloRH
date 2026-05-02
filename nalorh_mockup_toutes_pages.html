@@ -1,0 +1,569 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  .page-nav{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+  .pnav{font-size:12px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;color:var(--color-text-secondary);transition:all .15s}
+  .pnav.active{background:#1D9E75;color:#E1F5EE;border-color:#1D9E75}
+  .pnav:hover:not(.active){background:var(--color-background-secondary)}
+  .page{display:none}
+  .page.show{display:block}
+  .page-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:12px}
+
+  /* Browser chrome */
+  .browser{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+  .chrome{background:var(--color-background-secondary);padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .dot{width:9px;height:9px;border-radius:50%}
+  .url{font-size:11px;font-family:var(--font-mono);color:var(--color-text-tertiary);background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:4px;padding:3px 10px;flex:1;text-align:center}
+  .screen{background:var(--color-background-primary)}
+
+  /* Navbar */
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .logo{font-size:18px;font-weight:500;color:#1D9E75}
+  .logo span{color:var(--color-text-primary)}
+  .nav-links{display:flex;gap:20px}
+  .nav-link{font-size:12px;color:var(--color-text-secondary)}
+  .nav-link.active{color:#1D9E75;font-weight:500}
+  .btn-nav{font-size:12px;padding:6px 16px;border-radius:20px;background:#1D9E75;color:#E1F5EE;border:none;cursor:pointer}
+  .btn-ghost{font-size:12px;padding:6px 16px;border-radius:20px;background:transparent;color:#1D9E75;border:1.5px solid #1D9E75;cursor:pointer;margin-right:6px}
+
+  /* Cards */
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px}
+  .metric-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+  .metric-val{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+  .metric-label{font-size:11px;color:var(--color-text-tertiary)}
+
+  /* Colors */
+  .green{color:#1D9E75}
+  .red{color:#D85A30}
+  .muted{color:var(--color-text-secondary);font-size:12px}
+  .badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px}
+  .badge-green{background:#E1F5EE;color:#085041}
+  .badge-red{background:#FAECE7;color:#993C1D}
+  .badge-amber{background:#FAEEDA;color:#633806}
+  .badge-gray{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+  .section-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px}
+  .divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:12px 0}
+</style>
+
+<h2 class="sr-only">Mockup interactif des 4 pages du site web NaloRH — Landing, Upload, Dashboard, Rapport</h2>
+
+<div class="page-nav">
+  <button class="pnav active" onclick="showPage('landing',this)">Page 1 — Landing</button>
+  <button class="pnav" onclick="showPage('upload',this)">Page 2 — Upload & Analyse</button>
+  <button class="pnav" onclick="showPage('dashboard',this)">Page 3 — Dashboard</button>
+  <button class="pnav" onclick="showPage('rapport',this)">Page 4 — Rapport & Export</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE 1 — LANDING
+══════════════════════════════════════════════════ -->
+<div class="page show" id="page-landing">
+  <p class="page-label">Page 1 — Landing page publique</p>
+  <div class="browser">
+    <div class="chrome">
+      <div class="dot" style="background:#D85A30"></div>
+      <div class="dot" style="background:#EF9F27"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="url">nalorh.app</div>
+    </div>
+    <div class="screen">
+      <!-- Navbar -->
+      <div class="nav">
+        <div class="logo">Nalo<span>RH</span></div>
+        <div class="nav-links">
+          <span class="nav-link">Fonctionnalités</span>
+          <span class="nav-link">Comment ça marche</span>
+          <span class="nav-link">GitHub</span>
+        </div>
+        <div>
+          <button class="btn-ghost">Démo live</button>
+          <button class="btn-nav">Commencer</button>
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <div style="padding:48px 40px 32px;text-align:center;border-bottom:0.5px solid var(--color-border-tertiary)">
+        <div style="display:inline-block;font-size:11px;font-weight:500;padding:4px 14px;border-radius:20px;background:#E1F5EE;color:#085041;margin-bottom:16px">Open source · Gratuit · Francophone</div>
+        <h1 style="font-size:32px;font-weight:500;color:var(--color-text-primary);line-height:1.2;margin-bottom:12px">Vos feedbacks parlent.<br><span style="color:#1D9E75">NaloRH traduit.</span></h1>
+        <p style="font-size:14px;color:var(--color-text-secondary);max-width:440px;margin:0 auto 24px;line-height:1.6">Analysez automatiquement les feedbacks de vos employés. Détectez les risques de départ avant qu'ils arrivent. Conçu pour les PME africaines.</p>
+        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:32px">
+          <button class="btn-nav" style="padding:10px 24px;font-size:13px">Analyser mes feedbacks</button>
+          <button class="btn-ghost" style="padding:10px 24px;font-size:13px">Voir la démo</button>
+        </div>
+        <!-- Mini stats -->
+        <div style="display:flex;gap:32px;justify-content:center">
+          <div style="text-align:center"><p style="font-size:20px;font-weight:500;color:#1D9E75">1 480</p><p style="font-size:11px;color:var(--color-text-tertiary)">employés analysés</p></div>
+          <div style="text-align:center"><p style="font-size:20px;font-weight:500;color:#1D9E75">87%</p><p style="font-size:11px;color:var(--color-text-tertiary)">précision NLP</p></div>
+          <div style="text-align:center"><p style="font-size:20px;font-weight:500;color:#1D9E75">30s</p><p style="font-size:11px;color:var(--color-text-tertiary)">par analyse</p></div>
+          <div style="text-align:center"><p style="font-size:20px;font-weight:500;color:#1D9E75">0€</p><p style="font-size:11px;color:var(--color-text-tertiary)">coût de licence</p></div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div style="padding:24px 32px">
+        <p style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);text-align:center;margin-bottom:16px">Ce que NaloRH fait pour vous</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div class="card">
+            <div style="width:32px;height:32px;border-radius:8px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin-bottom:8px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Sentiment temps réel</p>
+            <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">Positif / Neutre / Négatif avec score de confiance sur chaque feedback.</p>
+          </div>
+          <div class="card">
+            <div style="width:32px;height:32px;border-radius:8px;background:#FAECE7;display:flex;align-items:center;justify-content:center;margin-bottom:8px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D85A30" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Prédiction churn</p>
+            <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">Probabilité de démission à 6 mois par employé et par département.</p>
+          </div>
+          <div class="card">
+            <div style="width:32px;height:32px;border-radius:8px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin-bottom:8px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Insights actionnables</p>
+            <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">Thèmes récurrents, alertes département, recommandations RH générées par IA.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA band -->
+      <div style="margin:0 32px 24px;background:#085041;border-radius:var(--border-radius-lg);padding:20px 24px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <p style="font-size:14px;font-weight:500;color:#E1F5EE;margin-bottom:4px">Prêt à comprendre vos équipes ?</p>
+          <p style="font-size:12px;color:#9FE1CB">Import CSV · Analyse IA · Export PDF — tout en 2 minutes</p>
+        </div>
+        <button class="btn-nav" style="background:#1D9E75;white-space:nowrap">Commencer gratuitement</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE 2 — UPLOAD & ANALYSE
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-upload">
+  <p class="page-label">Page 2 — Upload & lancement de l'analyse</p>
+  <div class="browser">
+    <div class="chrome">
+      <div class="dot" style="background:#D85A30"></div>
+      <div class="dot" style="background:#EF9F27"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="url">nalorh.app/analyser</div>
+    </div>
+    <div class="screen">
+      <div class="nav">
+        <div class="logo">Nalo<span>RH</span></div>
+        <div class="nav-links">
+          <span class="nav-link active">Analyser</span>
+          <span class="nav-link">Dashboard</span>
+          <span class="nav-link">Rapports</span>
+        </div>
+        <button class="btn-nav">Exporter PDF</button>
+      </div>
+
+      <div style="padding:24px 32px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+          <!-- Zone upload -->
+          <div>
+            <p class="section-title">1 — Importer vos feedbacks</p>
+            <div style="border:1.5px dashed var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:28px;text-align:center;background:var(--color-background-secondary)">
+              <div style="width:40px;height:40px;border-radius:10px;background:#E1F5EE;margin:0 auto 10px;display:flex;align-items:center;justify-content:center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Glissez votre CSV ici</p>
+              <p style="font-size:12px;color:var(--color-text-tertiary);margin-bottom:12px">ou cliquez pour sélectionner</p>
+              <button class="btn-nav" style="font-size:12px;padding:6px 16px">Choisir un fichier</button>
+            </div>
+            <div style="margin-top:10px">
+              <p style="font-size:11px;color:var(--color-text-tertiary);margin-bottom:6px">Colonnes attendues :</p>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <span class="badge badge-green">texte</span>
+                <span class="badge badge-green">employe_id</span>
+                <span class="badge badge-green">date</span>
+                <span class="badge badge-green">departement</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Saisie manuelle -->
+          <div>
+            <p class="section-title">ou — Tester un feedback unique</p>
+            <div class="card">
+              <textarea style="width:100%;height:80px;font-size:13px;color:var(--color-text-primary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px;resize:none;font-family:var(--font-sans)" placeholder="Écrivez un feedback employé ici...">Je suis très insatisfait de mon poste actuel. Aucune reconnaissance malgré les efforts fournis.</textarea>
+              <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+                <select style="font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:5px 8px">
+                  <option>Sales</option><option>Tech</option><option>RH</option><option>Finance</option>
+                </select>
+                <button class="btn-nav" style="font-size:12px;padding:6px 16px;flex:1">Analyser ce feedback</button>
+              </div>
+            </div>
+
+            <!-- Résultat inline -->
+            <div class="card" style="margin-top:10px;border-color:#1D9E75">
+              <p style="font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Résultat</p>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                <span style="font-size:13px;color:var(--color-text-primary)">Sentiment</span>
+                <span class="badge badge-red">Négatif — 0.18</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                <span style="font-size:13px;color:var(--color-text-primary)">Risque churn</span>
+                <span class="badge badge-red">74% — CRITIQUE</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <span style="font-size:13px;color:var(--color-text-primary)">Thèmes</span>
+                <div style="display:flex;gap:4px"><span class="badge badge-amber">Reconnaissance</span><span class="badge badge-amber">Management</span></div>
+              </div>
+              <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 10px">
+                <p style="font-size:12px;color:#993C1D;line-height:1.5">Entretien individuel urgent recommandé. Évaluer la rémunération vs marché.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progression analyse batch -->
+        <div style="margin-top:16px" class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <p class="section-title" style="margin-bottom:0">Analyse en cours — HR_Analytics.csv</p>
+            <span class="badge badge-green">1 184 / 1 480</span>
+          </div>
+          <div style="background:var(--color-background-secondary);border-radius:4px;height:6px;overflow:hidden;margin-bottom:6px">
+            <div style="width:80%;height:6px;background:#1D9E75;border-radius:4px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between">
+            <span style="font-size:11px;color:var(--color-text-tertiary)">80% — ~6 secondes restantes</span>
+            <span style="font-size:11px;color:var(--color-text-tertiary)">Modèle : CamemBERT + RandomForest v1.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE 3 — DASHBOARD
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-dashboard">
+  <p class="page-label">Page 3 — Dashboard analytique</p>
+  <div class="browser">
+    <div class="chrome">
+      <div class="dot" style="background:#D85A30"></div>
+      <div class="dot" style="background:#EF9F27"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="url">nalorh.app/dashboard</div>
+    </div>
+    <div class="screen">
+      <div class="nav">
+        <div class="logo">Nalo<span>RH</span></div>
+        <div class="nav-links">
+          <span class="nav-link">Analyser</span>
+          <span class="nav-link active">Dashboard</span>
+          <span class="nav-link">Rapports</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select style="font-size:11px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:4px 8px;color:var(--color-text-secondary)"><option>Tous les depts</option></select>
+          <button class="btn-nav" style="font-size:11px;padding:5px 14px">Exporter PDF</button>
+        </div>
+      </div>
+
+      <div style="padding:16px 24px">
+        <!-- KPI row -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+          <div class="metric-card">
+            <p class="metric-val">1 480</p>
+            <p class="metric-label">Employés analysés</p>
+          </div>
+          <div class="metric-card">
+            <p class="metric-val" style="color:#1D9E75">0.598</p>
+            <p class="metric-label">Score NaloRH moyen</p>
+          </div>
+          <div class="metric-card">
+            <p class="metric-val" style="color:#D85A30">12.4%</p>
+            <p class="metric-label">Signal churn élevé</p>
+          </div>
+          <div class="metric-card">
+            <p class="metric-val" style="color:#EF9F27">16.1%</p>
+            <p class="metric-label">Attrition réelle</p>
+          </div>
+        </div>
+
+        <!-- Alerte -->
+        <div style="background:#FAECE7;border-left:3px solid #D85A30;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D85A30" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <p style="font-size:12px;color:#993C1D"><span style="font-weight:500">2 alertes actives —</span> Sales (32% négatifs) · Research &amp; Dev (29% négatifs)</p>
+        </div>
+
+        <!-- Charts row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <!-- Donut sentiment -->
+          <div class="card">
+            <p class="section-title">Répartition des sentiments</p>
+            <div style="display:flex;align-items:center;gap:16px">
+              <svg width="90" height="90" viewBox="0 0 90 90">
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#1D9E75" stroke-width="16" stroke-dasharray="132 88"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#888780" stroke-width="16" stroke-dasharray="70 150" stroke-dashoffset="-132"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#D85A30" stroke-width="16" stroke-dasharray="18 202" stroke-dashoffset="-202"/>
+                <text x="45" y="49" text-anchor="middle" style="font-size:12px;fill:var(--color-text-primary);font-weight:500">1480</text>
+              </svg>
+              <div style="flex:1">
+                <div style="display:flex;justify-content:space-between;margin-bottom:5px;align-items:center"><span style="font-size:12px;color:var(--color-text-secondary)">Positif</span><span style="font-size:13px;font-weight:500;color:#1D9E75">59.8%</span></div>
+                <div style="background:var(--color-background-secondary);border-radius:3px;height:4px;margin-bottom:8px"><div style="width:60%;height:4px;background:#1D9E75;border-radius:3px"></div></div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:5px;align-items:center"><span style="font-size:12px;color:var(--color-text-secondary)">Neutre</span><span style="font-size:13px;font-weight:500;color:#888780">28.2%</span></div>
+                <div style="background:var(--color-background-secondary);border-radius:3px;height:4px;margin-bottom:8px"><div style="width:28%;height:4px;background:#888780;border-radius:3px"></div></div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:5px;align-items:center"><span style="font-size:12px;color:var(--color-text-secondary)">Négatif</span><span style="font-size:13px;font-weight:500;color:#D85A30">12.0%</span></div>
+                <div style="background:var(--color-background-secondary);border-radius:3px;height:4px"><div style="width:12%;height:4px;background:#D85A30;border-radius:3px"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Score par département -->
+          <div class="card">
+            <p class="section-title">Score NaloRH par département</p>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:11px;color:var(--color-text-secondary);width:100px">Research &amp; Dev</span>
+                <div style="flex:1;background:var(--color-background-secondary);border-radius:3px;height:8px"><div style="width:68%;height:8px;background:#1D9E75;border-radius:3px"></div></div>
+                <span style="font-size:11px;font-weight:500;color:#1D9E75;width:32px">0.68</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:11px;color:var(--color-text-secondary);width:100px">Human Resources</span>
+                <div style="flex:1;background:var(--color-background-secondary);border-radius:3px;height:8px"><div style="width:57%;height:8px;background:#1D9E75;border-radius:3px"></div></div>
+                <span style="font-size:11px;font-weight:500;color:#1D9E75;width:32px">0.57</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:11px;color:var(--color-text-secondary);width:100px">Sales</span>
+                <div style="flex:1;background:var(--color-background-secondary);border-radius:3px;height:8px"><div style="width:38%;height:8px;background:#D85A30;border-radius:3px"></div></div>
+                <span style="font-size:11px;font-weight:500;color:#D85A30;width:32px">0.38</span>
+              </div>
+              <div style="margin-top:4px;padding-top:8px;border-top:0.5px solid var(--color-border-tertiary)">
+                <span style="font-size:11px;color:#993C1D;background:#FAECE7;padding:3px 8px;border-radius:4px">Sales en zone alerte — score &lt; 0.40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <!-- Top risques churn -->
+          <div class="card">
+            <p class="section-title">Top 5 employés à risque de churn</p>
+            <table style="width:100%;font-size:12px;border-collapse:collapse">
+              <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+                <td style="padding:4px 0;color:var(--color-text-tertiary)">ID</td>
+                <td style="padding:4px 0;color:var(--color-text-tertiary)">Dept</td>
+                <td style="padding:4px 0;color:var(--color-text-tertiary)">Score</td>
+                <td style="padding:4px 0;text-align:right;color:var(--color-text-tertiary)">Churn</td>
+              </tr>
+              <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+                <td style="padding:5px 0;color:var(--color-text-primary)">EMP042</td>
+                <td>Sales</td>
+                <td style="color:#D85A30">0.18</td>
+                <td style="text-align:right"><span class="badge badge-red">CRITIQUE</span></td>
+              </tr>
+              <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+                <td style="padding:5px 0;color:var(--color-text-primary)">EMP118</td>
+                <td>Sales</td>
+                <td style="color:#D85A30">0.22</td>
+                <td style="text-align:right"><span class="badge badge-red">CRITIQUE</span></td>
+              </tr>
+              <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+                <td style="padding:5px 0;color:var(--color-text-primary)">EMP077</td>
+                <td>R&amp;D</td>
+                <td style="color:#EF9F27">0.31</td>
+                <td style="text-align:right"><span class="badge badge-amber">ÉLEVÉ</span></td>
+              </tr>
+              <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+                <td style="padding:5px 0;color:var(--color-text-primary)">EMP203</td>
+                <td>Sales</td>
+                <td style="color:#EF9F27">0.33</td>
+                <td style="text-align:right"><span class="badge badge-amber">ÉLEVÉ</span></td>
+              </tr>
+              <tr>
+                <td style="padding:5px 0;color:var(--color-text-primary)">EMP091</td>
+                <td>HR</td>
+                <td style="color:#EF9F27">0.35</td>
+                <td style="text-align:right"><span class="badge badge-amber">ÉLEVÉ</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Thèmes récurrents -->
+          <div class="card">
+            <p class="section-title">Thèmes récurrents</p>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;color:var(--color-text-secondary)">Management</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="width:80px;background:var(--color-background-secondary);border-radius:3px;height:6px"><div style="width:85%;height:6px;background:#1D9E75;border-radius:3px"></div></div>
+                  <span style="font-size:11px;color:var(--color-text-tertiary);width:28px">42%</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;color:var(--color-text-secondary)">Salaire</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="width:80px;background:var(--color-background-secondary);border-radius:3px;height:6px"><div style="width:60%;height:6px;background:#1D9E75;border-radius:3px"></div></div>
+                  <span style="font-size:11px;color:var(--color-text-tertiary);width:28px">29%</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;color:var(--color-text-secondary)">Évolution</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="width:80px;background:var(--color-background-secondary);border-radius:3px;height:6px"><div style="width:48%;height:6px;background:#888780;border-radius:3px"></div></div>
+                  <span style="font-size:11px;color:var(--color-text-tertiary);width:28px">23%</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;color:var(--color-text-secondary)">Charge travail</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="width:80px;background:var(--color-background-secondary);border-radius:3px;height:6px"><div style="width:36%;height:6px;background:#D85A30;border-radius:3px"></div></div>
+                  <span style="font-size:11px;color:var(--color-text-tertiary);width:28px">17%</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;color:var(--color-text-secondary)">Ambiance</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="width:80px;background:var(--color-background-secondary);border-radius:3px;height:6px"><div style="width:22%;height:6px;background:#888780;border-radius:3px"></div></div>
+                  <span style="font-size:11px;color:var(--color-text-tertiary);width:28px">11%</span>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <p style="font-size:11px;color:var(--color-text-tertiary)">Sur 1 480 feedbacks analysés · Semaine du 01/04/2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE 4 — RAPPORT & EXPORT
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-rapport">
+  <p class="page-label">Page 4 — Rapport & export PDF</p>
+  <div class="browser">
+    <div class="chrome">
+      <div class="dot" style="background:#D85A30"></div>
+      <div class="dot" style="background:#EF9F27"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="url">nalorh.app/rapport</div>
+    </div>
+    <div class="screen">
+      <div class="nav">
+        <div class="logo">Nalo<span>RH</span></div>
+        <div class="nav-links">
+          <span class="nav-link">Analyser</span>
+          <span class="nav-link">Dashboard</span>
+          <span class="nav-link active">Rapports</span>
+        </div>
+        <button class="btn-nav">Télécharger PDF</button>
+      </div>
+
+      <div style="padding:20px 32px;display:grid;grid-template-columns:1fr 320px;gap:20px">
+        <!-- Preview rapport -->
+        <div>
+          <p class="section-title">Aperçu du rapport</p>
+          <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+            <!-- En-tête rapport -->
+            <div style="background:#085041;padding:20px 24px">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div>
+                  <p style="font-size:18px;font-weight:500;color:#E1F5EE;margin-bottom:4px">NaloRH</p>
+                  <p style="font-size:12px;color:#9FE1CB">Rapport d'analyse RH — Avril 2026</p>
+                </div>
+                <div style="text-align:right">
+                  <p style="font-size:11px;color:#9FE1CB">HR_Analytics.csv</p>
+                  <p style="font-size:11px;color:#9FE1CB">1 480 employés · 3 depts</p>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px">
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px;text-align:center">
+                  <p style="font-size:16px;font-weight:500;color:#E1F5EE">0.598</p>
+                  <p style="font-size:10px;color:#9FE1CB">Score moyen</p>
+                </div>
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px;text-align:center">
+                  <p style="font-size:16px;font-weight:500;color:#E1F5EE">12.4%</p>
+                  <p style="font-size:10px;color:#9FE1CB">Churn signal</p>
+                </div>
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px;text-align:center">
+                  <p style="font-size:16px;font-weight:500;color:#D85A30">2</p>
+                  <p style="font-size:10px;color:#9FE1CB">Alertes depts</p>
+                </div>
+                <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px;text-align:center">
+                  <p style="font-size:16px;font-weight:500;color:#E1F5EE">87%</p>
+                  <p style="font-size:10px;color:#9FE1CB">Précision NLP</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Corps rapport -->
+            <div style="padding:16px 20px">
+              <p style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px">Recommandations prioritaires</p>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+                  <span class="badge badge-red" style="margin-top:1px;flex-shrink:0">URGENT</span>
+                  <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">Département Sales : entretiens individuels immédiats pour les 5 employés à score &lt; 0.25. Risque de vague de démissions dans les 3 mois.</p>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+                  <span class="badge badge-amber" style="margin-top:1px;flex-shrink:0">ACTION</span>
+                  <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">Management identifié dans 42% des feedbacks négatifs : formation managers intermédiaires recommandée sous 30 jours.</p>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+                  <span class="badge badge-green" style="margin-top:1px;flex-shrink:0">SUIVI</span>
+                  <p style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">R&amp;D score à 0.68 — maintenir les conditions actuelles. Partager les bonnes pratiques avec les autres depts.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panneau options export -->
+        <div>
+          <p class="section-title">Options d'export</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="card" style="border-color:#1D9E75">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                <p style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Rapport PDF complet</p>
+                <span class="badge badge-green">Recommandé</span>
+              </div>
+              <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Graphiques + recommandations + top risques + thèmes</p>
+              <button class="btn-nav" style="width:100%;font-size:12px">Télécharger PDF</button>
+            </div>
+            <div class="card">
+              <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Export CSV enrichi</p>
+              <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Données + colonnes sentiment_score, churn_risk_pct, themes</p>
+              <button style="width:100%;font-size:12px;padding:7px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;color:var(--color-text-primary)">Télécharger CSV</button>
+            </div>
+            <div class="card">
+              <p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">Partager le rapport</p>
+              <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Lien de lecture seule — expire dans 7 jours</p>
+              <div style="display:flex;gap:6px">
+                <input style="flex:1;font-size:11px;font-family:var(--font-mono);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:5px 8px;color:var(--color-text-tertiary)" value="nalorh.app/r/abc123" readonly>
+                <button style="font-size:11px;padding:5px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;color:var(--color-text-primary)">Copier</button>
+              </div>
+            </div>
+            <div style="margin-top:4px;padding:10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+              <p style="font-size:11px;color:var(--color-text-tertiary);line-height:1.6">Prochain rapport programmé : lundi 06/04/2026 · Fréquence : hebdomadaire</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+  <button style="font-size:13px;padding:8px 16px;border-radius:var(--border-radius-md);background:#1D9E75;color:#E1F5EE;border:none;cursor:pointer" onclick="sendPrompt('Crée le site web React complet NaloRH avec ces 4 pages : landing, upload/analyse, dashboard et rapport/export')">Coder ce site en React ↗</button>
+  <button style="font-size:13px;padding:8px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;color:var(--color-text-primary)" onclick="sendPrompt('Je veux modifier le design du mockup NaloRH, propose-moi des variantes de couleurs et de layout')">Modifier le design ↗</button>
+</div>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('show'));
+  document.querySelectorAll('.pnav').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('show');
+  btn.classList.add('active');
+}
+</script>
