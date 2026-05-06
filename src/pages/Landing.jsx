@@ -195,9 +195,13 @@ export default function Landing() {
         <div className="footer-inner">
           <div className="footer-logo">NaloRH</div>
           <div className="footer-links">
-            {['/analyser','Analyser'],['/dashboard','Dashboard'],['/rapport','Rapport']].map(([to, label]) => (
-              <span key={to} className="footer-link" onClick={() => navigate(to)}>{label}</span>
-            ))}
+            {[
+  ['/analyser', 'Analyser'],
+  ['/dashboard', 'Dashboard'],
+  ['/rapport', 'Rapport']
+].map(([to, label]) => (
+  <span key={to} className="footer-link" onClick={() => navigate(to)}>{label}</span>
+))}
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub ↗</a>
           </div>
           <div className="footer-copy">MIT License · Fait avec ❤️ pour les PME africaines</div>
