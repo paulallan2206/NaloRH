@@ -187,6 +187,6 @@ zéro coût de licence, déployable en moins de 10 minutes.
 
 ## 📝 License
 
-MIT © 2026 Paul Allan Meyesika — Fait avec ❤️ à Libreville, Gabon
+MIT © 2026 Paul Allan Junior — Fait avec ❤️ à Libreville, Gabon
 
 *Si ce projet t'a aidé, une ⭐ sur GitHub me ferait vraiment plaisir !*
