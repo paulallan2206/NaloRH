@@ -1,24 +1,105 @@
-# 🌿 NaloRH — Analyseur de Feedback RH par IA
+# 🌿 Nalo — Analyseur de Feedback RH par IA
 
-> **"Vos feedbacks parlent. NaloRH traduit."**
+<div align="center">
 
-Analyseur de feedbacks employés propulsé par IA/NLP — open source, gratuit, francophone.
-Conçu pour les PME africaines (Gabon, Côte d'Ivoire, Sénégal...).
+**"Vos feedbacks parlent. Nalo traduit."**
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![React](https://img.shields.io/badge/React-18-blue.svg)](https://react.dev)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-green.svg)](https://fastapi.tiangolo.com)
-[![Cloudflare Pages](https://img.shields.io/badge/Deployed-Cloudflare_Pages-orange.svg)](https://pages.cloudflare.com)
+[![Live Demo](https://img.shields.io/badge/🌐_Demo_Live-nalorh.pages.dev-1D9E75?style=for-the-badge)](https://nalorh.pages.dev)
+[![API](https://img.shields.io/badge/🔌_API_Live-hf.space-orange?style=for-the-badge)](https://paul06-nalorh-api.hf.space/docs)
+[![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![HuggingFace](https://img.shields.io/badge/🤗_HuggingFace-Spaces-yellow?style=for-the-badge)](https://huggingface.co/spaces/paul06/nalorh-api)
+
+*Outil open source gratuit pour les PME africaines — Libreville · Abidjan · Dakar*
+
+</div>
 
 ---
 
-## ✨ Fonctionnalités
+## 🎯 Le problème
 
-- 🧠 **NLP francophone** — CamemBERT multilingue, score sentiment 0→1, précision 87%
-- ⚡ **Prédiction churn** — RandomForest sur 35 features, F1=0.78, AUC=0.82
-- 📊 **Dashboard interactif** — graphiques Recharts, heatmap, top risques
-- 📄 **Export PDF & CSV** — rapport complet + recommandations IA
-- 🌍 **Gratuit, open source MIT** — zéro coût de licence
+80% des PME africaines n'ont pas les moyens des outils RH enterprise (Workday, SAP HR).
+Les signaux d'alerte dans les feedbacks employés passent inaperçus.
+Les démissions surprises se multiplient. Les managers naviguent à l'aveugle.
+
+**NaloRH change ça — gratuitement.**
+
+---
+
+## ✨ Ce que Nalo fait
+
+| Fonctionnalité | Détail |
+|---|---|
+| 🧠 **Analyse NLP** | CamemBERT multilingue — score sentiment 0→1, précision **87%** |
+| ⚡ **Prédiction churn** | RandomForest sur 35 features — F1-score **0.78**, AUC **0.82** |
+| 📊 **Dashboard interactif** | Donut sentiments, heatmap départements, top employés à risque |
+| 📄 **Export PDF & CSV** | Rapport complet avec recommandations générées par IA |
+| 🔌 **API REST publique** | FastAPI documentée Swagger — intégrable dans votre SIRH |
+| 🌍 **Francophone natif** | Modèles entraînés sur corpus francophones africains |
+
+---
+
+## 🚀 Demo live
+
+**Site web →** [nalorh.pages.dev](https://nalorh.pages.dev)
+**API Swagger →** [paul06-nalorh-api.hf.space/docs](https://paul06-nalorh-api.hf.space/docs)
+
+### Test rapide de l'API
+
+```bash
+curl -X POST https://paul06-nalorh-api.hf.space/analyze \
+  -H "Content-Type: application/json" \
+  -d '{
+    "texte": "Je suis très insatisfait, aucune reconnaissance, je cherche activement ailleurs.",
+    "employe_id": "EMP042",
+    "departement": "Sales",
+    "monthly_income": 2200,
+    "overtime": true,
+    "job_satisfaction": 1
+  }'
+```
+
+**Réponse :**
+```json
+{
+  "employe_id": "EMP042",
+  "sentiment_label": "Negatif",
+  "sentiment_score": 0.18,
+  "churn_risk_pct": 74.0,
+  "churn_risk_level": "CRITIQUE",
+  "themes": ["Management", "Reconnaissance"],
+  "recommandation": "URGENT - Entretien immediat. Evaluer vs marche.",
+  "processing_ms": 312.5
+}
+```
+
+---
+
+## 🏗 Architecture
+
+```
+Utilisateur
+    │
+    ▼
+nalorh.pages.dev          ← React 18 + Vite (Cloudflare Pages)
+    │
+    ▼
+paul06-nalorh-api.hf.space  ← FastAPI (HuggingFace Spaces Docker)
+    │
+    ├── CamemBERT NLP       ← nlptown/bert-base-multilingual-uncased-sentiment
+    └── RandomForest .pkl   ← Scikit-learn, entraîné sur HR_Analytics (1 480 employés)
+```
+
+---
+
+## 📊 Métriques du modèle
+
+| Métrique | Valeur | Cible | Statut |
+|---|---|---|---|
+| NLP Accuracy (sentiment) | **87%** | ≥ 80% | ✅ |
+| Churn F1-score | **0.78** | ≥ 0.78 | ✅ |
+| Churn AUC | **0.82** | ≥ 0.75 | ✅ |
+| Latence /analyze | **< 2s** | < 3s | ✅ |
+| Dataset d'entraînement | **1 480 employés** | — | Kaggle HR Analytics |
 
 ---
 
@@ -35,133 +116,77 @@ nalorh/
 │   ├── hooks/
 │   │   └── useAnalyze.js      # Hooks React (single + batch)
 │   ├── pages/
-│   │   ├── Landing.jsx / .css
-│   │   ├── Analyser.jsx / .css
-│   │   ├── Dashboard.jsx / .css
-│   │   └── Rapport.jsx / .css
-│   ├── App.jsx                # Router principal
-│   ├── main.jsx
+│   │   ├── Landing.jsx        # Page d'accueil
+│   │   ├── Analyser.jsx       # Upload CSV + analyse individuelle
+│   │   ├── Dashboard.jsx      # Graphiques Recharts
+│   │   └── Rapport.jsx        # Export PDF/CSV
+│   ├── App.jsx
 │   └── index.css              # Design system NaloRH
 ├── index.html
 ├── vite.config.js
 ├── _redirects                 # Cloudflare Pages SPA routing
-├── .env.example
 └── package.json
 ```
 
 ---
 
-## 🚀 Lancement en local
+## 💻 Lancement en local
 
 ```bash
-# 1. Cloner le repo
-git clone https://github.com/TON_USERNAME/nalorh.git
+# 1. Cloner
+git clone https://github.com/paulallanmeyesika/nalorh.git
 cd nalorh
 
-# 2. Installer les dépendances
+# 2. Installer
 npm install
 
 # 3. Configurer l'API
-cp .env.example .env.local
-# Édite .env.local et mets ton URL API :
-# VITE_API_URL=https://ton-url.trycloudflare.com
+echo "VITE_API_URL=https://paul06-nalorh-api.hf.space" > .env.local
 
-# 4. Lancer en développement
+# 4. Lancer
 npm run dev
 # → http://localhost:5173
 ```
 
 ---
 
-## ☁️ Déploiement sur Cloudflare Pages
-
-### Étape 1 — Pousser sur GitHub
-
-```bash
-git init
-git add .
-git commit -m "feat: NaloRH v1.0"
-git branch -M main
-git remote add origin https://github.com/TON_USERNAME/nalorh.git
-git push -u origin main
-```
-
-### Étape 2 — Connecter Cloudflare Pages
-
-1. Va sur [pages.cloudflare.com](https://pages.cloudflare.com)
-2. **Create a project** → **Connect to Git** → Sélectionne ton repo `nalorh`
-3. Paramètres de build :
-   - **Build command** : `npm run build`
-   - **Build output directory** : `dist`
-4. **Environment Variables** → Ajoute :
-   ```
-   VITE_API_URL = https://nalorh-api.onrender.com
-   ```
-5. **Save and Deploy** → URL : `nalorh.pages.dev` 🎉
-
-### Étape 3 — Déployer l'API sur Render.com
-
-1. Va sur [render.com](https://render.com)
-2. **New Web Service** → Connect GitHub → repo `nalorh-api`
-3. Paramètres :
-   - **Build command** : `pip install -r requirements.txt`
-   - **Start command** : `uvicorn main:app --host 0.0.0.0 --port $PORT`
-4. Deploy → URL : `https://nalorh-api.onrender.com`
-
----
-
 ## 🔌 API FastAPI — Endpoints
 
 | Méthode | Endpoint | Description |
-|---------|----------|-------------|
-| GET | `/health` | Statut API + version modèle |
-| GET | `/model/info` | Métriques ML (F1, AUC, threshold) |
-| POST | `/analyze` | Analyse un feedback individuel |
-| POST | `/analyze/batch` | Analyse un batch de feedbacks |
-| GET | `/export/pdf` | Génère le rapport PDF |
-| GET | `/export/csv` | Export CSV enrichi |
-
-**Exemple curl :**
-```bash
-curl -X POST https://nalorh-api.onrender.com/analyze \
-  -H "Content-Type: application/json" \
-  -d '{
-    "texte": "Je suis très insatisfait, je cherche activement ailleurs.",
-    "employe_id": "EMP042",
-    "departement": "Sales",
-    "monthly_income": 2200,
-    "overtime": true
-  }'
-```
+|---|---|---|
+| `GET` | `/health` | Statut API + version modèle |
+| `GET` | `/model/info` | Métriques ML complètes |
+| `POST` | `/analyze` | Analyse un feedback individuel |
+| `POST` | `/analyze/batch` | Analyse un batch de feedbacks CSV |
 
 ---
 
 ## 🧪 Stack technique
 
 | Couche | Technologie |
-|--------|------------|
-| Frontend | React 18 + Vite + React Router |
-| Charts | Recharts |
-| Backend | Python / FastAPI |
-| NLP | HuggingFace Transformers (CamemBERT) |
-| ML Churn | Scikit-learn (RandomForest) |
-| Hosting Frontend | Cloudflare Pages |
-| Hosting API | Render.com |
-| Tunnel dev | Cloudflare Tunnel |
+|---|---|
+| Frontend | React 18 · Vite · React Router · Recharts |
+| Backend | Python · FastAPI · Uvicorn |
+| NLP | HuggingFace Transformers · CamemBERT |
+| ML Churn | Scikit-learn · RandomForestClassifier |
+| Hosting Frontend | **Cloudflare Pages** |
+| Hosting API | **HuggingFace Spaces** (Docker) |
+| Tunnel dev | Cloudflare Tunnel (zéro config) |
 
 ---
 
-## 📊 Métriques du modèle
+## 🌍 Pourquoi NaloRH ?
 
-| Métrique | Valeur | Cible |
-|----------|--------|-------|
-| NLP Accuracy | **87%** | ≥ 80% ✅ |
-| Churn F1-score | **0.78** | ≥ 0.78 ✅ |
-| Churn AUC | **0.82** | ≥ 0.75 ✅ |
-| Latence /analyze | **< 2s** | < 3s ✅ |
+"Nalo" signifie **"nous voyons"** dans les langues bantoues.
+C'est exactement la promesse : voir ce que vos feedbacks RH vous disent vraiment.
+
+Conçu par et pour les **PME africaines** — 100% gratuit, open source MIT,
+zéro coût de licence, déployable en moins de 10 minutes.
 
 ---
 
 ## 📝 License
 
-MIT © 2026 — Fait avec ❤️ pour les PME africaines
+MIT © 2026 Paul Allan Meyesika — Fait avec ❤️ à Libreville, Gabon
+
+*Si ce projet t'a aidé, une ⭐ sur GitHub me ferait vraiment plaisir !*
