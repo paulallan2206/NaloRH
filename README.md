@@ -1,8 +1,8 @@
-# 🌿 Nalo — Analyseur de Feedback RH par IA
+# 🌿 Nalorh — Analyseur de Feedback RH par IA
 
 <div align="center">
 
-**"Vos feedbacks parlent. Nalo traduit."**
+**"Vos feedbacks parlent. Nalorh traduit."**
 
 [![Live Demo](https://img.shields.io/badge/🌐_Demo_Live-nalorh.pages.dev-1D9E75?style=for-the-badge)](https://nalorh.pages.dev)
 [![API](https://img.shields.io/badge/🔌_API_Live-hf.space-orange?style=for-the-badge)](https://paul06-nalorh-api.hf.space/docs)
