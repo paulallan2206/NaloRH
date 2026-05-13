@@ -172,10 +172,32 @@
 .footer-copy { font-size: 11px; color: #3D5040; }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; gap: 36px; padding: 48px 16px 40px; }
-  .hero-title { font-size: 38px; }
-  .features-grid { grid-template-columns: 1fr 1fr; }
-  .steps-grid { grid-template-columns: 1fr 1fr; }
-  .cta-band { flex-direction: column; text-align: center; padding: 32px 24px; }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 20px 40px;
+  }
+  .hero-title { font-size: 36px; }
+  .hero-visual { display: none; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-stats { gap: 20px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .step-arrow { display: none; }
+  .cta-band {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+  }
+  .cta-band .btn { width: 100%; justify-content: center; }
   .footer-inner { flex-direction: column; text-align: center; gap: 16px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 30px; }
+  .hero-badge { font-size: 10px; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .stat-val { font-size: 22px; }
 }
