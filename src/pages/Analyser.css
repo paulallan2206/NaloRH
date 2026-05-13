@@ -123,4 +123,8 @@
 
 @media (max-width: 768px) {
   .analyser-grid { grid-template-columns: 1fr; }
+  .analyze-row { flex-direction: column; }
+  .analyze-row select { width: 100% !important; }
+  .batch-summary { flex-wrap: wrap; gap: 10px; }
+  .drop-zone { padding: 24px 16px; }
 }
