@@ -27,7 +27,7 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
-          <a href="https://github.com/paulallanmeyesika/nalorh"
+          <a href="https://github.com/paulallan2206/NaloRH"
             target="_blank" rel="noopener noreferrer" className="navbar-link">
             GitHub ↗
           </a>
