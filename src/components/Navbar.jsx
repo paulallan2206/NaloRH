@@ -16,8 +16,8 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbar-logo" onClick={() => { navigate('/'); setOpen(false) }}>
-          Nalo
-        </div>
+  Nalo<span>RH</span>
+</div>
         <div className="navbar-links">
           {links.map(l => (
             <NavLink
@@ -54,7 +54,7 @@ export default function Navbar() {
             {l.label}
           </NavLink>
         ))}
-        <a href="https://github.com/paulallanmeyesika/nalorh"
+        <a href="https://github.com/paulallan2206/NaloRH"
           target="_blank" rel="noopener noreferrer"
           className="navbar-link" onClick={() => setOpen(false)}>
           GitHub ↗
